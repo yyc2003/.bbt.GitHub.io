@@ -1,4 +1,29 @@
 ## Welcome to GitHub Pages
+<body>
+
+    <header id="header">
+        <h1>云中漫步BBT</h1>
+    </header>
+    <main id="app">
+        <aside>
+            <p id="describe">
+                想说就不要想，说点什么吧……
+            </p>
+        </aside>
+        <p class="tip">现在总共 b 了 {{count}} 条</p>
+        <section class="item" v-for="item in contents" v-cloak>
+            <p v-html='item.attributes.content'></p>
+            <time v-bind:datetime="item.attributes.time">{{item.attributes.time}}</time>
+        </section>
+        <div class="load-ctn">
+            <button class="load-btn" v-on:click="loadMore" v-if="contents" v-cloak>再翻翻</button>
+            <p class="tip" v-else>别急，加载呢</p>
+        </div>
+    </main>
+    <footer>
+        <p class="center-text">Copyright © 2020 daibor,All Rights Reserved</p>
+    </footer>
+</body>
 
 <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.5.3/dist/av-min.js"></script>
@@ -10,7 +35,6 @@
         appId: "Llrd2wR7cCPRlcXlwcOpMMEM-MdYXbMMI", //你的 leancloud 应用 id （设置-应用keys-AppID）
         appKey: "iaVHEe9QBwkdk1bQwEbl7yvE", //你的 leancloud 应用 AppKey （设置-应用keys-AppKey）
     });
-
 
     var query = new AV.Query('content');
     
@@ -60,7 +84,6 @@
     query.count().then(function(count) {
         app.count = count;
     }, function(error) {});
-
 </script>
 
 **Bold** and _Italic_ and `Code` text
